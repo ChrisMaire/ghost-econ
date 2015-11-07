@@ -11,7 +11,7 @@ public class BuyPanel : Menu {
     DeskLocation[] DeskLocations;
 
     int maxDesks = 6;
-    int desk = 0;
+    int deskIndex = 0;
 
     Business business;
 
@@ -22,19 +22,24 @@ public class BuyPanel : Menu {
         business = FindObjectOfType<Business>();
 	}
 	
-	public bool BuyDesk()
+	public Desk BuyDesk()
     {
-        if (desk == maxDesks)
-            return false;
+        if (deskIndex == maxDesks)
+        {
+            return null;
+        }
 
-        GameObject newDesk = Instantiate(DeskObject, DeskLocations[desk].transform.position, Quaternion.identity) as GameObject;
-        newDesk.GetComponent<Desk>().Init(DeskLocations[desk].LayerInt);
+        GameObject newDesk = Instantiate(DeskObject, DeskLocations[deskIndex].transform.position, Quaternion.identity) as GameObject;
+        Desk desk = newDesk.GetComponent<Desk>();
+        desk.Init(DeskLocations[deskIndex].LayerInt);
+        newDesk.transform.SetParent(DeskLocations[deskIndex].transform);
 
-        desk++;
+        deskIndex++;
 
         GameObject newDeskRow = Instantiate(DeskRowPrefab) as GameObject;
         newDeskRow.transform.SetParent(DeskList, false);
+        newDeskRow.GetComponent<DeskRow>().desk = desk;
 
-        return true;
+        return desk;
     }
 }

@@ -10,6 +10,8 @@ public class DeskRow : MonoBehaviour {
 
     BuyPanel buyPanel;
 
+    public Desk desk;
+
     void Awake()
     {
         buyPanel = FindObjectOfType<BuyPanel>();
@@ -24,6 +26,9 @@ public class DeskRow : MonoBehaviour {
 	}
 	
 	void Upgrade() {
-	    
+        if(desk != null)
+        {
+            desk.Upgrade();
+        }
 	}
 }

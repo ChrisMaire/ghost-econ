@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class IntroPanel : MonoBehaviour {
+public class IntroPanel : Menu {
     public InputField NameInput;
     public InputField DescInput;
 
@@ -19,21 +19,29 @@ public class IntroPanel : MonoBehaviour {
 	
 	}
 
-    void CreateBusiness()
+    public void CreateBusiness()
     {
-        business.name = NameInput.text;
-        business.Description = DescInput.text;
+        UpdateName(NameInput.text);
+        UpdateDesc(DescInput.text);
 
-        CreateBusinessPanel.SetActive(false);
+        Hide();
     }
 
     public void UpdateName(string newName)
     {
-        business.name = newName;
+        if(string.IsNullOrEmpty(newName))
+        {
+            return;
+        }
+        business.SetName(newName);
     }
 
     public void UpdateDesc(string newDesc)
     {
-        business.Description = newDesc;
+        if (string.IsNullOrEmpty(newDesc))
+        {
+            return;
+        }
+        business.SetDesc(newDesc);
     }
 }
