@@ -12,6 +12,8 @@ public class MoneyPerTickText : MonoBehaviour
         text = GetComponent<Text>();
         business = FindObjectOfType<Business>();
         business.MoneyPerTickChanged += m => UpdateText(m);
+
+        UpdateText(business.MoneyPerTick);
     }
 
     void UpdateText(int money)

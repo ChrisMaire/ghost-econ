@@ -8,6 +8,7 @@ public class Business : MonoBehaviour {
 
     public int Money;
     public int MoneyPerTick;
+    public int MoneyPerClick;
 
     public List<BusinessAsset> Assets;
 
@@ -30,6 +31,26 @@ public class Business : MonoBehaviour {
         tickTime = 0f;
 	}
 
+    public void EarnMoney(int amount)
+    {
+        Money += amount;
+
+        if (MoneyChanged != null)
+        {
+            MoneyChanged(Money);
+        }
+    }
+
+    public void SpendMoney(int amount)
+    {
+        Money -= amount;
+
+        if (MoneyChanged != null)
+        {
+            MoneyChanged(Money);
+        }
+    }
+
     IEnumerator DoTick()
     {
         while(true)
@@ -50,7 +71,6 @@ public class Business : MonoBehaviour {
 
                 tickTime = 0f;
             }
-
         }
     }
 

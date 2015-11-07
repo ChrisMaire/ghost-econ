@@ -29,10 +29,13 @@ public class BuyPanel : Menu {
             return;
         }
 
+
         GameObject newDesk = Instantiate(DeskObject, DeskLocations[deskIndex].transform.position, Quaternion.identity) as GameObject;
         Desk desk = newDesk.GetComponent<Desk>();
         desk.Init(DeskLocations[deskIndex].LayerInt);
         newDesk.transform.SetParent(DeskLocations[deskIndex].transform);
+
+        business.SpendMoney(desk.BaseCost);
 
         deskIndex++;
 

@@ -10,7 +10,9 @@ public class MoneyText : MonoBehaviour {
         text = GetComponent<Text>();
         business = FindObjectOfType<Business>();
         business.MoneyChanged += m => UpdateText(m);
-	}
+
+        UpdateText(business.Money);
+    }
 
     void UpdateText(int money)
     {
