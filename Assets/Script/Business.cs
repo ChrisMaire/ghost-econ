@@ -21,23 +21,36 @@ public class Business : MonoBehaviour {
 
     public int MaxDesks;
 
+    float tickTime;
+    public float TickPercent;
+
     void Awake() {
         Assets = new List<BusinessAsset>();
         StartCoroutine(DoTick());
+        tickTime = 0f;
 	}
 
     IEnumerator DoTick()
     {
         while(true)
         {
-            yield return new WaitForSeconds(TickTime);
+            yield return new WaitForEndOfFrame();
 
-            Money += MoneyPerTick;
+            tickTime += Time.deltaTime;
+            TickPercent = tickTime / TickTime;
 
-            if(MoneyChanged != null)
+            if(tickTime >= TickTime)
             {
-                MoneyChanged(Money);
+                Money += MoneyPerTick;
+
+                if (MoneyChanged != null)
+                {
+                    MoneyChanged(Money);
+                }
+
+                tickTime = 0f;
             }
+
         }
     }
 

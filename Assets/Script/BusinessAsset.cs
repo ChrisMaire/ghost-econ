@@ -12,7 +12,13 @@ public class BusinessAsset : MonoBehaviour {
     public int CostExponent;
 
     public System.Action AssetUpdated;
-    
+
+    public virtual void Init()
+    {
+        Money = (1 + Level) * MoneyPerLevel;
+        FindObjectOfType<Business>().AddAsset(this);
+    }
+
     public virtual int GetCost()
     {
         return (int)Mathf.Pow(BaseCost + (Level * CostPerLevel), CostExponent);
@@ -21,8 +27,9 @@ public class BusinessAsset : MonoBehaviour {
     public virtual void Upgrade()
     {
         Level++;
+        Money = (1 + Level) * MoneyPerLevel;
 
-        if(AssetUpdated != null)
+        if (AssetUpdated != null)
         {
             AssetUpdated();
         }

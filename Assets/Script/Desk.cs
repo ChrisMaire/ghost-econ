@@ -8,10 +8,10 @@ public class Desk : BusinessAsset {
 
     public void Init(int row)
     {
+        Init();
+
         ghost.sortingLayerID = row;
         computer.sortingLayerID = row;
         desk.sortingLayerID = row;
-
-        FindObjectOfType<Business>().AddAsset(this);
     }
 }

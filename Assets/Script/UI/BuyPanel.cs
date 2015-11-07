@@ -22,11 +22,11 @@ public class BuyPanel : Menu {
         business = FindObjectOfType<Business>();
 	}
 	
-	public Desk BuyDesk()
+	public void BuyDesk()
     {
         if (deskIndex == maxDesks)
         {
-            return null;
+            return;
         }
 
         GameObject newDesk = Instantiate(DeskObject, DeskLocations[deskIndex].transform.position, Quaternion.identity) as GameObject;
@@ -38,8 +38,7 @@ public class BuyPanel : Menu {
 
         GameObject newDeskRow = Instantiate(DeskRowPrefab) as GameObject;
         newDeskRow.transform.SetParent(DeskList, false);
+        newDeskRow.transform.localScale = new Vector3(1,1,1);
         newDeskRow.GetComponent<DeskRow>().desk = desk;
-
-        return desk;
     }
 }
