@@ -2,14 +2,16 @@
 using System.Collections;
 
 public class MenuManager : MonoBehaviour {
+    public GameObject CEOMenu;
+    public GameObject HRMenu;
+    public GameObject ShopMenu;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public bool MenuOpen()
+    {
+        if(CEOMenu.activeSelf || HRMenu.activeSelf || ShopMenu.activeSelf)
+        {
+            return true;
+        }
+        return false;
+    }
 }

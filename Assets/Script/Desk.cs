@@ -6,6 +6,17 @@ public class Desk : BusinessAsset {
     public SpriteRenderer computer;
     public SpriteRenderer desk;
 
+    Transform thisTransform;
+
+    void Start()
+    {
+        thisTransform = transform;
+        FindObjectOfType<Business>().Ticked += () =>
+        {
+            FloatyTextManager.ShowFloatyMoney(Money, Camera.main.WorldToScreenPoint(thisTransform.position));
+        };
+    }
+
     public void Init(int row)
     {
         Init();

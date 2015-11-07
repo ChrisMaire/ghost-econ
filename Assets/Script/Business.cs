@@ -20,6 +20,8 @@ public class Business : MonoBehaviour {
     public System.Action<int> MoneyChanged;
     public System.Action<int> MoneyPerTickChanged;
 
+    public System.Action Ticked;
+
     public int MaxDesks;
 
     float tickTime;
@@ -70,6 +72,11 @@ public class Business : MonoBehaviour {
                 }
 
                 tickTime = 0f;
+
+                if(Ticked != null)
+                {
+                    Ticked();
+                }
             }
         }
     }

@@ -13,7 +13,7 @@ public class BusinessAsset : MonoBehaviour {
 
     public int BaseCost;
     public int CostPerLevel;
-    public int CostExponent;
+    public float CostExponent;
 
     public System.Action AssetUpdated;
 

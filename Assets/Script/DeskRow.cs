@@ -42,9 +42,10 @@ public class DeskRow : MonoBehaviour {
 	void Upgrade() {
         if(desk != null && business.Money >= desk.GetUpgradeCost() && desk.Level < desk.MaxLevel)
         {
+            business.SpendMoney(desk.GetUpgradeCost());
+
             desk.Upgrade();
 
-            business.SpendMoney(desk.GetUpgradeCost());
             business.UpdateAssets();
 
             UpdateText();
@@ -57,6 +58,11 @@ public class DeskRow : MonoBehaviour {
         {
             DescriptionText.text = desk.LevelNames[desk.Level] + " - $" + desk.Money + " / Tick";
             UpgradeButtonText.text = "UPGRADE - LEVEL " + (desk.Level + 1) + " (" + desk.GetUpgradeCost() + ")";
+
+            if(desk.Level == desk.MaxLevel)
+            {
+                UpgradeButton.gameObject.SetActive(false);
+            }
         }
     }
 
