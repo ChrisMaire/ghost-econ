@@ -5,7 +5,6 @@ using System.Collections;
 public class BriefcaseUpgrade : BusinessUpgrade {
 
     public GameObject BriefcaseButton;
-    public Button buyButton;
 
     public override void Upgrade()
     {

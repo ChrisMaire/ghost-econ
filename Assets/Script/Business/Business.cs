@@ -9,6 +9,7 @@ public class Business : MonoBehaviour {
     public int Money;
     public int MoneyPerTick;
     public int MoneyPerClick;
+    public int MoneyPerScare;
 
     public List<BusinessAsset> Assets;
     public List<BusinessUpgrade> Upgrades;
@@ -28,7 +29,11 @@ public class Business : MonoBehaviour {
     float tickTime;
     public float TickPercent;
 
+    public static Business instance;
+
     void Awake() {
+        instance = this;
+
         Assets = new List<BusinessAsset>();
         Upgrades = new List<BusinessUpgrade>();
 

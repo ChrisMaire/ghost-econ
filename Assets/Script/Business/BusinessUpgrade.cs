@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BusinessUpgrade : MonoBehaviour {
@@ -11,6 +12,8 @@ public class BusinessUpgrade : MonoBehaviour {
     public int CostPerLevel;
     public float CostExponent;
 
+    public Button buyButton;
+
     public System.Action AssetUpdated;
 
     public virtual void Init()
@@ -18,14 +21,19 @@ public class BusinessUpgrade : MonoBehaviour {
         FindObjectOfType<Business>().AddUpgrade(this);
     }
 
-    public virtual int GetUpgradeCost()
+    public int GetCost()
     {
-        return BaseCost + (Level * CostPerLevel);
+        return BaseCost + (CostPerLevel * Level);
     }
 
     public virtual void Upgrade()
     {
         Level++;
+
+        buyButton.GetComponentInChildren<Text>().text = "BUY ("+GetCost()+")";
+
+        if (Level == MaxLevel)
+            buyButton.interactable = false;
 
         if (AssetUpdated != null)
         {

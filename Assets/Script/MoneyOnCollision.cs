@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class MoneyOnCollision : MonoBehaviour {
-    public int Amount;
-
     Business business;
 
 	void Awake() {
@@ -22,8 +20,8 @@ public class MoneyOnCollision : MonoBehaviour {
 
     void DoCollide()
     {
-        business.EarnMoney(Amount);
-        FloatyTextManager.ShowFloatyMoney(Amount, Camera.main.WorldToScreenPoint(transform.position));
+        business.EarnMoney(Business.instance.MoneyPerScare);
+        FloatyTextManager.ShowFloatyMoney(Business.instance.MoneyPerScare, Camera.main.WorldToScreenPoint(transform.position));
         Destroy(this);
     }
 }
