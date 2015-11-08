@@ -7,6 +7,13 @@ public class MenuManager : MonoBehaviour {
     public Menu HRMenu;
     public Menu ShopMenu;
 
+    void Awake()
+    {
+        CorpMenu.Show();
+        CEOMenu.Show();
+        HRMenu.Show();
+        ShopMenu.Show();
+    }
     void Start()
     {
         CorpMenu.Hide();

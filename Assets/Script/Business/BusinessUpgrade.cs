@@ -20,7 +20,7 @@ public class BusinessUpgrade : MonoBehaviour {
     {
         if(PlayerPrefs.HasKey(name))
         {
-            int l = PlayerPrefs.GetInt(name);
+            int l = PlayerPrefs.GetInt(Name);
             for(int i = 0; i < l; i++)
             {
                 Upgrade();
@@ -43,6 +43,8 @@ public class BusinessUpgrade : MonoBehaviour {
         Level++;
 
         buyButton.GetComponentInChildren<Text>().text = "BUY ("+GetCost()+")";
+
+        PlayerPrefs.SetInt(Name, Level);
 
         if (Level == MaxLevel)
             buyButton.interactable = false;

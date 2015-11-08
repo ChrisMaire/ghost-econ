@@ -5,6 +5,7 @@ public class ShopPanel : Menu {
     public BriefcaseUpgrade briefcase;
     public PosterUpgrade poster;
     public CharismaUpgrade charisma;
+    public SnorkelUpgrade snorkel;
 
     Business business;
     void Awake()
@@ -12,6 +13,7 @@ public class ShopPanel : Menu {
         briefcase = FindObjectOfType<BriefcaseUpgrade>();
         business = FindObjectOfType<Business>();
         charisma = FindObjectOfType<CharismaUpgrade>();
+        snorkel = FindObjectOfType<SnorkelUpgrade>();
     }
 
     public void TryBuyBriefcase()
@@ -38,6 +40,15 @@ public class ShopPanel : Menu {
         {
             business.SpendMoney(poster.GetCost());
             poster.Upgrade();
+        }
+    }
+
+    public void TryBuySnorkel()
+    {
+        if (business.Money > snorkel.GetCost())
+        {
+            business.SpendMoney(snorkel.GetCost());
+            snorkel.Upgrade();
         }
     }
 }

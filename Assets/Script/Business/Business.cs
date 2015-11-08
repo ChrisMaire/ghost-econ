@@ -63,8 +63,8 @@ public class Business : MonoBehaviour {
             DescChanged(Description);
         }
 
-        BuyPanel b = FindObjectOfType<BuyPanel>();
-
+        MenuManager m = FindObjectOfType<MenuManager>();
+        BuyPanel b = m.HRMenu.GetComponent<BuyPanel>();
         for (int i = 0; i < b.maxDesks; i++)
         {
             if (PlayerPrefs.HasKey("desk" + i))
@@ -138,7 +138,7 @@ public class Business : MonoBehaviour {
     {
         Upgrades.Add(upgrade);
 
-        PlayerPrefs.SetInt(upgrade.name, upgrade.Level);
+        
     }
 
     public void UpdateAssets()

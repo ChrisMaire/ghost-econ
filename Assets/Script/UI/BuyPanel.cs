@@ -21,11 +21,6 @@ public class BuyPanel : Menu {
 
         business = FindObjectOfType<Business>();
 	}
-
-    void Start()
-    {
-
-    }
 	
 	public void BuyDesk()
     {

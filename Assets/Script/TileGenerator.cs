@@ -22,8 +22,11 @@ public class TileGenerator : MonoBehaviour {
             Destroy(SpawnedObject);
         }
 
-        BGSprite.sprite = RandomBGSprites[Random.Range(0, RandomBGSprites.Length)];
-        DistantBG.color = c;
+        if(BGSprite != null)
+            BGSprite.sprite = RandomBGSprites[Random.Range(0, RandomBGSprites.Length)];
+
+        if(DistantBG != null)
+            DistantBG.color = c;
 
         int i = Random.Range(-1, RandomObject.Length);
 
