@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(gameManager.Running)
         {
+            /*
             Vector2 newPos = body.position;
             newPos.x += Speed * Time.deltaTime;
             
@@ -68,20 +69,33 @@ public class PlayerController : MonoBehaviour {
             {
                 newPos.y -= Gravity  * Time.deltaTime;
             }
-
+            
             body.MovePosition(newPos);
+            */
+            float y = body.velocity.y;
+            if (Input.GetButton("Fire1"))
+            {
+                y += Upward * Time.deltaTime;
+            }
+            else
+            {
+                y -= Gravity * Time.deltaTime;
+            }
+            body.velocity = new Vector3(Speed, y);
         }
     }
 
     void StartRun()
     {
         transform.Rotate(new Vector3(0,180,0));
+        body.isKinematic = false;
     }
 
     void EndRun()
     {
         transform.Rotate(new Vector3(0, 180, 0));
         gravOn = false;
+        body.isKinematic = true;
         body.MovePosition(startPos);
     }
 }

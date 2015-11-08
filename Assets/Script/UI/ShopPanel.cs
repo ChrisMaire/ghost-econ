@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ShopPanel : Menu {
     public BriefcaseUpgrade briefcase;
+    public PosterUpgrade poster;
 
     Business business;
     void Awake()
@@ -22,6 +23,10 @@ public class ShopPanel : Menu {
 
     public void TryBuyPoster()
     {
-
+        if (business.Money > poster.BaseCost)
+        {
+            business.SpendMoney(poster.BaseCost);
+            poster.Upgrade();
+        }
     }
 }

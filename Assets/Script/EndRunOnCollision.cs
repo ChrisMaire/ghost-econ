@@ -12,4 +12,9 @@ public class EndRunOnCollision : MonoBehaviour {
     {
         gameManager.EndRun();
     }
+
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        gameManager.EndRun();
+    }
 }

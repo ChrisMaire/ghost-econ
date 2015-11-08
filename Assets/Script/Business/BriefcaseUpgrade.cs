@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BriefcaseUpgrade : BusinessUpgrade {
 
     public GameObject BriefcaseButton;
+    public Button buyButton;
 
     public override void Upgrade()
     {
         base.Upgrade();
 
         BriefcaseButton.gameObject.SetActive(true);
+        buyButton.interactable = false;
 
         GameManager gameManager = FindObjectOfType<GameManager>();
         gameManager.RunStarted += () => StartRun();
