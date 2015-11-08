@@ -11,6 +11,7 @@ public class Business : MonoBehaviour {
     public int MoneyPerClick;
 
     public List<BusinessAsset> Assets;
+    public List<BusinessUpgrade> Upgrades;
 
     public float TickTime = 3.0f;
 
@@ -29,6 +30,8 @@ public class Business : MonoBehaviour {
 
     void Awake() {
         Assets = new List<BusinessAsset>();
+        Upgrades = new List<BusinessUpgrade>();
+
         StartCoroutine(DoTick());
         tickTime = 0f;
 	}
@@ -86,6 +89,11 @@ public class Business : MonoBehaviour {
         Assets.Add(asset);
 
         UpdateAssets();
+    }
+
+    public void AddUpgrade(BusinessUpgrade upgrade)
+    {
+        Upgrades.Add(upgrade);
     }
 
     public void UpdateAssets()

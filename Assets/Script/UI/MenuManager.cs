@@ -2,13 +2,22 @@
 using System.Collections;
 
 public class MenuManager : MonoBehaviour {
-    public GameObject CEOMenu;
-    public GameObject HRMenu;
-    public GameObject ShopMenu;
+    public Menu CEOMenu;
+    public Menu HRMenu;
+    public Menu ShopMenu;
+
+    void Start()
+    {
+        CEOMenu.Show();
+        HRMenu.Hide();
+        ShopMenu.Hide();
+    }
 
     public bool MenuOpen()
     {
-        if(CEOMenu.activeSelf || HRMenu.activeSelf || ShopMenu.activeSelf)
+        if(CEOMenu.gameObject.activeSelf || 
+            HRMenu.gameObject.activeSelf || 
+            ShopMenu.gameObject.activeSelf)
         {
             return true;
         }
