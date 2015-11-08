@@ -10,7 +10,7 @@ public class BuyPanel : Menu {
 
     DeskLocation[] DeskLocations;
 
-    int maxDesks = 6;
+    public int maxDesks = 6;
     int deskIndex = 0;
 
     Business business;
@@ -24,14 +24,7 @@ public class BuyPanel : Menu {
 
     void Start()
     {
-        for (int i = 0; i < maxDesks; i++)
-        {
-            if (PlayerPrefs.HasKey("desk" + i))
-            {
-                int l = PlayerPrefs.GetInt("desk" + i);
-                AddDeskFree(l);
-            }
-        }
+
     }
 	
 	public void BuyDesk()
@@ -80,6 +73,7 @@ public class BuyPanel : Menu {
         newDeskRow.transform.SetParent(DeskList, false);
         newDeskRow.transform.localScale = new Vector3(1, 1, 1);
         DeskRow d = newDeskRow.GetComponent<DeskRow>();
+        d.desk = desk;
         d.UpdateText();
     }
 }

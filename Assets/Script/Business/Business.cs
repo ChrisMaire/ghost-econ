@@ -62,6 +62,17 @@ public class Business : MonoBehaviour {
         {
             DescChanged(Description);
         }
+
+        BuyPanel b = FindObjectOfType<BuyPanel>();
+
+        for (int i = 0; i < b.maxDesks; i++)
+        {
+            if (PlayerPrefs.HasKey("desk" + i))
+            {
+                int l = PlayerPrefs.GetInt("desk" + i);
+                b.AddDeskFree(l);
+            }
+        }
     }
 
     public void EarnMoney(int amount)
