@@ -39,11 +39,36 @@ public class Business : MonoBehaviour {
 
         StartCoroutine(DoTick());
         tickTime = 0f;
-	}
+
+        if(PlayerPrefs.HasKey("businessname"))
+        {
+            Name = PlayerPrefs.GetString("businessname");
+            Description = PlayerPrefs.GetString("businessdesc");
+            Money = PlayerPrefs.GetInt("money");
+        }
+    }
+
+    void Start()
+    {
+        if (NameChanged != null)
+        {
+            NameChanged(Name);
+        }
+        if (DescChanged != null)
+        {
+            DescChanged(Description);
+        }
+        if (MoneyChanged != null)
+        {
+            DescChanged(Description);
+        }
+    }
 
     public void EarnMoney(int amount)
     {
         Money += amount;
+
+        PlayerPrefs.SetInt("money", Money);
 
         if (MoneyChanged != null)
         {
@@ -54,6 +79,8 @@ public class Business : MonoBehaviour {
     public void SpendMoney(int amount)
     {
         Money -= amount;
+
+        PlayerPrefs.SetInt("money", Money);
 
         if (MoneyChanged != null)
         {
@@ -99,6 +126,8 @@ public class Business : MonoBehaviour {
     public void AddUpgrade(BusinessUpgrade upgrade)
     {
         Upgrades.Add(upgrade);
+
+        PlayerPrefs.SetInt(upgrade.name, upgrade.Level);
     }
 
     public void UpdateAssets()
@@ -108,6 +137,11 @@ public class Business : MonoBehaviour {
         foreach(BusinessAsset asset in Assets)
         {
             newTick += asset.Money;
+        }
+
+        for (int i = 0; i < Assets.Count; i++)
+        {
+            PlayerPrefs.SetInt("desk"+i, Assets[i].Level);
         }
 
         MoneyPerTick = newTick;
@@ -121,7 +155,7 @@ public class Business : MonoBehaviour {
     public void SetName(string name)
     {
         Name = name;
-
+        PlayerPrefs.SetString("businessname", Name);
         if(NameChanged != null)
         {
             NameChanged(Name);
@@ -131,7 +165,7 @@ public class Business : MonoBehaviour {
     public void SetDesc(string desc)
     {
         Description = desc;
-
+        PlayerPrefs.SetString("businessdesc", desc);
         if (DescChanged != null)
         {
             DescChanged(Description);

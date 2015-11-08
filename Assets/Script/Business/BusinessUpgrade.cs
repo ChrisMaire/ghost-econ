@@ -16,6 +16,18 @@ public class BusinessUpgrade : MonoBehaviour {
 
     public System.Action AssetUpdated;
 
+    void Start()
+    {
+        if(PlayerPrefs.HasKey(name))
+        {
+            int l = PlayerPrefs.GetInt(name);
+            for(int i = 0; i < l; i++)
+            {
+                Upgrade();
+            }
+        }
+    }
+
     public virtual void Init()
     {
         FindObjectOfType<Business>().AddUpgrade(this);

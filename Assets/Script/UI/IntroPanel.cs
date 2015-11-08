@@ -14,6 +14,14 @@ public class IntroPanel : Menu {
 	void Awake() {
         business = FindObjectOfType<Business>();
 	}
+
+    void Start()
+    {
+        if(PlayerPrefs.HasKey("businessname"))
+        {
+            Hide();
+        }
+    }
 	
 	void Update () {
 	

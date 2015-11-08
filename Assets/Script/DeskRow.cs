@@ -52,7 +52,7 @@ public class DeskRow : MonoBehaviour {
         }
 	}
 
-    void UpdateText()
+    public void UpdateText()
     {
         if(desk != null)
         {
