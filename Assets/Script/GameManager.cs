@@ -36,4 +36,10 @@ public class GameManager : MonoBehaviour {
             RunEnded();
         }
     }
+
+    public void ResetAll()
+    {
+        PlayerPrefs.DeleteAll();
+        Application.LoadLevel(0);
+    }
 }
