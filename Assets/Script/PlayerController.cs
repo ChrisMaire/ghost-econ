@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     public float Speed;
+    float startSpeed;
+    public float SpeedIncrease;
     public float Gravity;
     public float Upward;
 
@@ -16,12 +18,15 @@ public class PlayerController : MonoBehaviour {
     Vector3 startPos;
 
     bool gravOn = false;
+    Animator anim;
 
 	void Awake() {
+        startSpeed = Speed;
         gameManager = FindObjectOfType<GameManager>();
         business = FindObjectOfType<Business>();
         menus = FindObjectOfType<MenuManager>();
 
+        anim = GetComponent<Animator>();
         collider2d = GetComponent<Collider2D>();
         body = GetComponent<Rigidbody2D>();
 
@@ -57,21 +62,8 @@ public class PlayerController : MonoBehaviour {
     {
         if(gameManager.Running)
         {
-            /*
-            Vector2 newPos = body.position;
-            newPos.x += Speed * Time.deltaTime;
-            
-            if(Input.GetButton("Fire1"))
-            {
-                gravOn = true;
-                newPos.y += Upward * Time.deltaTime;
-            } else if (gravOn)
-            {
-                newPos.y -= Gravity  * Time.deltaTime;
-            }
-            
-            body.MovePosition(newPos);
-            */
+            Speed += SpeedIncrease * Time.deltaTime;
+
             float y = body.velocity.y;
             if (Input.GetButton("Fire1"))
             {
@@ -87,15 +79,19 @@ public class PlayerController : MonoBehaviour {
 
     void StartRun()
     {
+        anim.SetBool("floating", false);
         transform.Rotate(new Vector3(0,180,0));
         body.isKinematic = false;
+        Speed = startSpeed;
     }
 
     void EndRun()
     {
+        anim.SetBool("floating", true);
         transform.Rotate(new Vector3(0, 180, 0));
         gravOn = false;
         body.isKinematic = true;
-        body.MovePosition(startPos);
+        //body.MovePosition(startPos);
+        body.transform.position = startPos;
     }
 }
